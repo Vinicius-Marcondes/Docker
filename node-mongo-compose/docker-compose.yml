@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+    db:
+        image: mongo:3.4
+        container_name: mongo-db
+        hostname: mongo-db
+    backend:
+        image: node:8.1
+        container_name: nodejs
+        hostname: nodejs
+        volumes:
+            - ./backend:/backend
+        ports:
+            - 3000:3000
+        command: bash -c "cd /backend && npm i && node app"
+    frontend:
+        image: nginx:1.13
+        container_name: nginx
+        hostname: nginx
+        volumes:
+            - ./frontend:/usr/share/nginx/html/
+        ports:
+            - 80:80            
