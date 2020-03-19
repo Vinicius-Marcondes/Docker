@@ -12,7 +12,7 @@ class Sender(Bottle):
         self.route('/', method='POST', callback=self.send)
         redis_host = os.getenv('REDIS_HOST', 'queue')
         self.queue = redis.StrictRedis(host=redis_host, port=6379, db=0)
-        db_host = os.getenv('DB_HOST', 'db')
+        db_host = os.getenv('DB_HOST', 'postgres-db')
         db_user = os.getenv('DB_USER', 'postgres')
         db_name = os.getenv('DB_NAME','sender')
         db_passwd = os.getenv('DB_PASSWD', 'password')
